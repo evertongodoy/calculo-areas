@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: Areas
+
+
+# Configurações de logging
+logging:
+  level:
+    root: INFO  # Nível de log para a raiz
+    org.springframework.web: DEBUG  # Nível de log para o pacote Spring Web
+  file:
+    name: logs/app.log  # Arquivo onde os logs serão salvos
+
+    
