@@ -5,7 +5,7 @@ public class FabricaFormatos {
     public static Formato criarFormato(String shapeType, double... dimensoes) {
         switch (shapeType.toLowerCase().trim()) {
                 case "circulo":
-                    if (dimensoes.length == 1) {
+                    if (dimensoes.length >= 1) {
                         return new Circulo(dimensoes[0]);
                     } else {
                         throw new IllegalArgumentException("Circulo necessita de 1 dimension (raio).");
