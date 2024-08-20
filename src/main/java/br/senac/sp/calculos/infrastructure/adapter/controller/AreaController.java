@@ -4,6 +4,7 @@ import br.senac.sp.calculos.application.dto.AreaRequest;
 import br.senac.sp.calculos.application.service.AreaCalculatorService;
 import br.senac.sp.calculos.domain.entity.Formato;
 import br.senac.sp.calculos.domain.entity.FabricaFormatos;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,12 @@ public class AreaController {
     }
 
     @PostMapping
-    public double calculateArea(@RequestBody AreaRequest areaRequest) {
+    public ResponseEntity<Double> calculateArea(@RequestBody AreaRequest areaRequest) {
         Formato shape = FabricaFormatos.criarFormato(
                 areaRequest.getShapeType(),
                 areaRequest.getDimensao1(),
                 areaRequest.getDimensao2());
-        return areaCalculatorService.calculateArea(shape);
+        return ResponseEntity.ok().body(areaCalculatorService.calculateArea(shape));
     }
 
 }

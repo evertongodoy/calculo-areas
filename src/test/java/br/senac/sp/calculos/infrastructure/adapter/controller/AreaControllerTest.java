@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
 class AreaControllerTest {
@@ -29,14 +30,15 @@ class AreaControllerTest {
 
         Formato f = new Circulo(Double.valueOf(10.0));
         var raio = Double.valueOf(10.0);
-        var esperado = Double.valueOf(314.1592653589793);
+        var esperado = ResponseEntity.ok().body(Double.valueOf(314.1592653589793));
 
         Mockito
                 .when(areaCalculatorService.calculateArea(f))
                 .thenReturn(Math.PI * raio * raio);
 
-        double atual = areaController.calculateArea(req);
-        Assertions.assertEquals(esperado, atual);
+        ResponseEntity<Double> atual = areaController.calculateArea(req);
+        Assertions.assertEquals(esperado.getStatusCode(), atual.getStatusCode());
+        Assertions.assertEquals(esperado.getBody(), atual.getBody());
 
     }
 
