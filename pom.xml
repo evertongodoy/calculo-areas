@@ -94,17 +94,17 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version> <!-- Certifique-se de usar a versão mais recente compatível -->
+                <version>0.8.12</version> <!-- Certifique-se de usar a versão mais recente compatível -->
+                <configuration>
+                    <excludes>
+                        <exclude>**/Retangulo.hashCode</exclude>
+                        <exclude>**/Retangulo.equals</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
