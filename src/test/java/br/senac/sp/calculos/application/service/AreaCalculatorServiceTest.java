@@ -1,5 +1,6 @@
 package br.senac.sp.calculos.application.service;
 
+import br.senac.sp.calculos.domain.entity.Circulo;
 import br.senac.sp.calculos.domain.entity.Formato;
 import br.senac.sp.calculos.domain.entity.Retangulo;
 import br.senac.sp.calculos.domain.usecase.CalculateAreaUseCase;
@@ -20,12 +21,22 @@ class AreaCalculatorServiceTest {
     private AreaCalculatorService areaCalculatorService;
 
     @Test
-    void testCalcularArea(){
+    void testCalcularAreaRetangulo(){
         Formato formato = new Retangulo(10.0, 10.0);
         Mockito.when(calculateAreaUseCase.execute(formato)).thenReturn(100.0);
 
         double atual = areaCalculatorService.calculateArea(formato);
 
         Assertions.assertEquals(100.0, atual);
+    }
+
+    @Test
+    void testCalcularAreaCirculo(){
+        Formato formato = new Circulo(10.0);
+        Mockito.when(calculateAreaUseCase.execute(formato)).thenReturn(314.1592653589793);
+
+        double atual = areaCalculatorService.calculateArea(formato);
+
+        Assertions.assertEquals(314.1592653589793, atual);
     }
 }
